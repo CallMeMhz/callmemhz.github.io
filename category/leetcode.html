@@ -2,7 +2,7 @@
 <html lang="chinese (simplified)">
 <head>
         <meta charset="utf-8" />
-        <title>MHZ</title>
+        <title>MHZ - Leetcode</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
@@ -10,44 +10,14 @@
         <header id="banner" class="body">
                 <h1><a href="/">MHZ </a></h1>
                 <nav><ul>
-                    <li><a href="/category/leetcode.html">Leetcode</a></li>
+                    <li class="active"><a href="/category/leetcode.html">Leetcode</a></li>
                     <li><a href="/category/posts.html">Posts</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="/ce-shi-biao-ti.html">测试标题</a></h1>
-<footer class="post-info">
-        <abbr class="published" title="2019-01-31T19:19:00+08:00">
-                Published: 周四 31 一月 2019
-        </abbr>
-
-        <address class="vcard author">
-                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
-        </address>
-<p>In <a href="/category/posts.html">Posts</a>.</p>
-<p>tags: <a href="/tag/test.html">Test</a> </p>
-</footer><!-- /.post-info --><p>测试数据</p>
-<h2>二级标题</h2>
-<p>测试内容测试内容测试内容测试内容测试内容测试内容</p>
-<p>测试内容测试内容测试内容</p>
-<p>测试内容测试内容</p>
-<p>测试内容测试内容测试内容测试内容</p>
-<p>测试内容测试内容测试内容测试内容测试内容</p>                </article>
-            </aside><!-- /#featured -->
-                <section id="content" class="body">
-                    <h1>Other articles</h1>
-                    <hr />
-                    <ol id="posts-list" class="hfeed">
-
-            <li><article class="hentry">
-                <header>
-                    <h1><a href="/5-zui-chang-hui-wen-zi-chuan.html" rel="bookmark"
-                           title="Permalink to 5. 最长回文子串">5. 最长回文子串</a></h1>
-                </header>
-
-                <div class="entry-content">
+                    <h1 class="entry-title"><a href="/5-zui-chang-hui-wen-zi-chuan.html">5. 最长回文子串</a></h1>
 <footer class="post-info">
         <abbr class="published" title="2019-01-28T17:03:00+08:00">
                 Published: 周一 28 一月 2019
@@ -58,7 +28,7 @@
         </address>
 <p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
 
-</footer><!-- /.post-info -->                <h2>暴力算法，贼慢，居然没超时</h2>
+</footer><!-- /.post-info --><h2>暴力算法，贼慢，居然没超时</h2>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
     <span class="k">def</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
         <span class="n">sub_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
@@ -74,10 +44,35 @@
 <h2>动态规划</h2>
 <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">longestPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
-        <span class="c1"># 使用动态规划，用空间换时间 …</span></pre></div>
-                <a class="readmore" href="/5-zui-chang-hui-wen-zi-chuan.html">read more</a>
-                </div><!-- /.entry-content -->
-            </article></li>
+        <span class="c1"># 使用动态规划，用空间换时间，把问题拆分</span>
+        <span class="c1"># 获取字符串s的长度</span>
+        <span class="n">str_length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="c1"># 记录最大字符串长度</span>
+        <span class="n">max_length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># 记录位置</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="c1"># 循环遍历字符串的每一个字符</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">str_length</span><span class="p">):</span>
+            <span class="c1"># 如果当前循环次数-当前最大长度大于等于1  并  字符串[当前循环次数-当前最大长度-1:当前循环次数+1]  == 取反后字符串</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">max_length</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">max_length</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">max_length</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="c1"># 记录当前开始位置</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">max_length</span> <span class="o">-</span> <span class="mi">1</span>
+                <span class="c1"># 取字符串最小长度为2，所以+=2，s[i-max_length-1: i+1]</span>
+                <span class="n">max_length</span> <span class="o">+=</span> <span class="mi">2</span>
+                <span class="k">continue</span>
+            <span class="c1"># 如果当前循环次数-当前最大长度大于等于0  并  字符串[当前循环次数-当前最大长度:当前循环次数+1]  == 取反后字符串</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">-</span> <span class="n">max_length</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">max_length</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">max_length</span><span class="p">:</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">max_length</span>
+                <span class="c1"># 取字符串最小长度为1，所以+=1，s[i-max_length: i+1]</span>
+                <span class="n">max_length</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># 返回最长回文子串</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="n">start</span><span class="p">:</span> <span class="n">start</span> <span class="o">+</span> <span class="n">max_length</span><span class="p">]</span>
+</pre></div>                </article>
+            </aside><!-- /#featured -->
+                <section id="content" class="body">
+                    <h1>Other articles</h1>
+                    <hr />
+                    <ol id="posts-list" class="hfeed">
 
             <li><article class="hentry">
                 <header>
@@ -359,10 +354,44 @@
                 <a class="readmore" href="/32-longest-valid-parentheses.html">read more</a>
                 </div><!-- /.entry-content -->
             </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/20-valid-parentheses.html" rel="bookmark"
+                           title="Permalink to 20. Valid Parentheses">20. Valid Parentheses</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-28T23:02:00+08:00">
+                Published: 周日 28 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mp</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;)&#39;</span><span class="p">:</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">:</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span> <span class="s1">&#39;{&#39;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mp</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mp</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">l</span>
+</pre></div>
+                <a class="readmore" href="/20-valid-parentheses.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
                 </ol><!-- /#posts-list -->
 <p class="paginator">
-    Page 1 / 6
-        <a href="/index2.html">&raquo;</a>
+    Page 1 / 5
+        <a href="/category/leetcode2.html">&raquo;</a>
 </p>
                 </section><!-- /#content -->
         <section id="extras" class="body">

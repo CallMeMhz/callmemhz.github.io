@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+<head>
+        <meta charset="utf-8" />
+        <title>MHZ - Mega Hertz</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">MHZ </a></h1>
+                <nav><ul>
+                    <li><a href="/category/leetcode.html">Leetcode</a></li>
+                    <li><a href="/category/posts.html">Posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+
+                <section id="content" class="body">
+                    <ol id="posts-list" class="hfeed" start="9">
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/20-valid-parentheses.html" rel="bookmark"
+                           title="Permalink to 20. Valid Parentheses">20. Valid Parentheses</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-28T23:02:00+08:00">
+                Published: 周日 28 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isValid</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mp</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;)&#39;</span><span class="p">:</span> <span class="s1">&#39;(&#39;</span><span class="p">,</span> <span class="s1">&#39;]&#39;</span><span class="p">:</span> <span class="s1">&#39;[&#39;</span><span class="p">,</span> <span class="s1">&#39;}&#39;</span><span class="p">:</span> <span class="s1">&#39;{&#39;</span><span class="p">}</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">mp</span><span class="p">:</span>
+                <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">l</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">!=</span> <span class="n">mp</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">l</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="n">l</span>
+</pre></div>
+                <a class="readmore" href="/20-valid-parentheses.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/6-z-zi-xing-bian-huan.html" rel="bookmark"
+                           title="Permalink to 6. Z 字形变换">6. Z 字形变换</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-28T17:04:00+08:00">
+                Published: 周日 28 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <blockquote>
+<p>难度：中等</p>
+<p>标签：字符串</p>
+</blockquote>
+<h2>行扫描</h2>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">numRows</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">numRows</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">s</span>
+        <span class="c1"># 预备行</span>
+        <span class="n">zigzag</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numRows</span><span class="p">)]</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 行扫描方向</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># 向下扫描行</span>
+            <span class="k">if</span> <span class="n">row</span> <span class="o">==</span> <span class="n">numRows</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">step</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>  <span class="c1"># 向上扫描行</span>
+            <span class="n">zigzag</span><span class="p">[</span><span class="n">row</span><span class="p">]</span> <span class="o">+=</span> <span class="n">c …</span></pre></div>
+                <a class="readmore" href="/6-z-zi-xing-bian-huan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/214-zui-duan-hui-wen-chuan.html" rel="bookmark"
+                           title="Permalink to 214. 最短回文串">214. 最短回文串</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-28T00:19:00+08:00">
+                Published: 周日 28 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shortestPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>    
+        <span class="n">reversed_s</span> <span class="o">=</span> <span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">reversed_s</span><span class="p">[</span><span class="n">i</span><span class="p">:]):</span>
+                <span class="k">return</span> <span class="n">reversed_s</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">s</span>
+        <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+
+
+<p>原理如下，最后在字符串前面插入 <code>dcb</code> 即得到结果</p>
+<div class="highlight"><pre><span></span>原串： abcd   abcd    abcd
+      ↑↑↑    ↑↑      ↑
+反串：dcba  dcba   dcba
+</pre></div>
+
+
+<h2>suff[::-1] + pref + suff</h2>
+<p>超级慢的版本</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shortestPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="k">for …</span></pre></div>
+                <a class="readmore" href="/214-zui-duan-hui-wen-chuan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/125-yan-zheng-hui-wen-chuan.html" rel="bookmark"
+                           title="Permalink to 125. 验证回文串">125. 验证回文串</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T23:37:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isPalindrome</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="c1"># 这样写效率低，执行了 len(s) 次 lower()</span>
+        <span class="c1"># s = [c.lower() for c in s if c.isalnum()]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="n">c</span><span class="o">.</span><span class="n">isalnum</span><span class="p">())</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">==</span><span class="n">s</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+
+<p><code>str.isalnum()</code> 等价于 <code>str.isalpha() and str.isnum()</code></p>
+<h2>利用正则过滤字符串中的无用符号</h2>
+<p>该方法效率最高</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object …</span></pre></div>
+                <a class="readmore" href="/125-yan-zheng-hui-wen-chuan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/030-chuan-lian-suo-you-dan-ci-de-zi-chuan.html" rel="bookmark"
+                           title="Permalink to 030. 串联所有单词的子串">030. 串联所有单词的子串</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T18:29:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <h2>十行版本，巨慢</h2>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">findSubstring</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">words</span><span class="p">:</span> <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">m</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">o</span><span class="p">,</span> <span class="n">target</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">words</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">m</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">o</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">word_target</span> <span class="o">=</span> <span class="n">words</span><span class="p">[:]</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">*</span><span class="n">o</span><span class="p">:</span><span class="n">i</span><span class="o">+</span><span class="n">k</span><span class="o">*</span><span class="n">o</span><span class="o">+</span><span class="n">o</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">word …</span></pre></div>
+                <a class="readmore" href="/030-chuan-lian-suo-you-dan-ci-de-zi-chuan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/76-zui-xiao-fu-gai-zi-chuan.html" rel="bookmark"
+                           title="Permalink to 76. 最小覆盖子串">76. 最小覆盖子串</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T15:56:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <p>滑动窗口原理</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">minWindow</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">or</span> <span class="n">t</span> <span class="o">==</span><span class="s1">&#39;&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s1">&#39;&#39;</span>
+        <span class="n">mp</span> <span class="o">=</span> <span class="n">collection</span><span class="o">.</span><span class="n">Counter</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">mp</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">head</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="ow">in</span> <span class="n">mp</span><span class="p">:</span>
+                <span class="n">mp</span><span class="p">[</span><span class="n">s</span><span class="p">[</span><span class="n">r</span><span class="p">]]</span> <span class="o">-=</span> <span class="mi">1 …</span></pre></div>
+                <a class="readmore" href="/76-zui-xiao-fu-gai-zi-chuan.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/65-you-xiao-shu-zi.html" rel="bookmark"
+                           title="Permalink to 65. 有效数字">65. 有效数字</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T11:51:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isNumber</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+        <span class="k">return</span> <span class="bp">True</span>
+</pre></div>
+                <a class="readmore" href="/65-you-xiao-shu-zi.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/068-wen-ben-zuo-you-dui-qi.html" rel="bookmark"
+                           title="Permalink to 068. 文本左右对齐">068. 文本左右对齐</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T01:54:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <blockquote>
+<p>Airbnb 高频面试题</p>
+</blockquote>
+<p>第一次自己 AC 了一道困难题，还击败了 100%</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">fullJustify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">words</span><span class="p">,</span> <span class="n">maxWidth</span><span class="p">):</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="p">[[]]</span>
+        <span class="n">current_line</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">width</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># 当前行宽度（包含空格）</span>
+        <span class="c1"># 生成行</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">words</span><span class="p">:</span>
+            <span class="c1"># 若超长则另起一行</span>
+            <span class="k">if</span> <span class="n">width</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">maxWidth</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">word</span><span class="p">,</span> <span class="p">])</span>
+                <span class="n">current_line</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="c1"># + 1 是预分配单词右侧的一个空格，方便判断边界</span>
+                <span class="n">width</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">lines</span><span class="p">[</span><span class="n">current_line</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+                <span class="n">width …</span></pre></div>
+                <a class="readmore" href="/068-wen-ben-zuo-you-dui-qi.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/792-zi-xu-lie-pi-pei-ge-shu.html" rel="bookmark"
+                           title="Permalink to 792. 子序列匹配个数">792. 子序列匹配个数</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T00:28:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <h2>暴力算法(超时)</h2>
+<p>尽管设置了 cache 依然超时</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">numMatchingSubseq</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">words</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">match</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="bp">False</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                        <span class="n">found</span> <span class="o">=</span> <span class="bp">True</span>
+                        <span class="n">start</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+                        <span class="k">break</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+                    <span class="k">return</span> <span class="bp">False</span>
+            <span class="k">return</span> <span class="bp">True</span>
+
+        <span class="n">res</span> <span class="o">=</span> <span class="mi">0 …</span></pre></div>
+                <a class="readmore" href="/792-zi-xu-lie-pi-pei-ge-shu.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+
+            <li><article class="hentry">
+                <header>
+                    <h1><a href="/848-zi-mu-yi-wei.html" rel="bookmark"
+                           title="Permalink to 848. 字母移位">848. 字母移位</a></h1>
+                </header>
+
+                <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-27T00:28:00+08:00">
+                Published: 周六 27 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->                <h2>大佬的</h2>
+<p>速度没差多少, 但看着很舒服</p>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shiftingLetters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">shifts</span><span class="p">):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">shifts</span><span class="p">)</span>
+        <span class="n">S</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)):</span>
+            <span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">chr</span><span class="p">(((</span><span class="nb">ord</span><span class="p">(</span><span class="n">S</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">-</span><span class="mi">97</span><span class="p">)</span><span class="o">+</span><span class="n">X</span><span class="p">)</span><span class="o">%</span><span class="mi">26</span><span class="o">+</span><span class="mi">97</span><span class="p">)</span>
+            <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">-</span><span class="n">shifts</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">S</span><span class="p">)</span>
+</pre></div>
+
+
+<h2>我的</h2>
+<div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">shiftingLetters</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">shifts</span><span class="p">):</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">shifts …</span></pre></div>
+                <a class="readmore" href="/848-zi-mu-yi-wei.html">read more</a>
+                </div><!-- /.entry-content -->
+            </article></li>
+                </ol><!-- /#posts-list -->
+<p class="paginator">
+        <a href="/author/mega-hertz.html">&laquo;</a>
+    Page 2 / 6
+        <a href="/author/mega-hertz3.html">&raquo;</a>
+</p>
+                </section><!-- /#content -->
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

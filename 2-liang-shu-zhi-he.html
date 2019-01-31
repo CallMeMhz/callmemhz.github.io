@@ -2,7 +2,7 @@
 <html lang="chinese (simplified)">
 <head>
         <meta charset="utf-8" />
-        <title>测试标题</title>
+        <title>2. 两数之和</title>
         <link rel="stylesheet" href="/theme/css/main.css" />
 </head>
 
@@ -10,36 +10,38 @@
         <header id="banner" class="body">
                 <h1><a href="/">MHZ </a></h1>
                 <nav><ul>
-                    <li><a href="/category/leetcode.html">Leetcode</a></li>
-                    <li class="active"><a href="/category/posts.html">Posts</a></li>
+                    <li class="active"><a href="/category/leetcode.html">Leetcode</a></li>
+                    <li><a href="/category/posts.html">Posts</a></li>
                 </ul></nav>
         </header><!-- /#banner -->
 <section id="content" class="body">
   <article>
     <header>
       <h1 class="entry-title">
-        <a href="/ce-shi-biao-ti.html" rel="bookmark"
-           title="Permalink to 测试标题">测试标题</a></h1>
+        <a href="/2-liang-shu-zhi-he.html" rel="bookmark"
+           title="Permalink to 2. 两数之和">2. 两数之和</a></h1>
     </header>
 
     <div class="entry-content">
 <footer class="post-info">
-        <abbr class="published" title="2019-01-31T19:19:00+08:00">
-                Published: 周四 31 一月 2019
+        <abbr class="published" title="2019-01-28T00:00:00+08:00">
+                Published: 周一 28 一月 2019
         </abbr>
 
         <address class="vcard author">
                 By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
         </address>
-<p>In <a href="/category/posts.html">Posts</a>.</p>
-<p>tags: <a href="/tag/test.html">Test</a> </p>
-</footer><!-- /.post-info -->      <p>测试数据</p>
-<h2>二级标题</h2>
-<p>测试内容测试内容测试内容测试内容测试内容测试内容</p>
-<p>测试内容测试内容测试内容</p>
-<p>测试内容测试内容</p>
-<p>测试内容测试内容测试内容测试内容</p>
-<p>测试内容测试内容测试内容测试内容测试内容</p>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+        <span class="n">mp</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">num</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+            <span class="n">another_num</span> <span class="o">=</span> <span class="n">target</span> <span class="o">-</span> <span class="n">num</span>
+            <span class="k">if</span> <span class="n">another_num</span> <span class="ow">in</span> <span class="n">mp</span><span class="p">:</span>
+                <span class="k">return</span> <span class="p">[</span><span class="n">mp</span><span class="p">[</span><span class="n">another_num</span><span class="p">],</span> <span class="n">index</span><span class="p">]</span>
+            <span class="n">mp</span><span class="p">[</span><span class="n">num</span><span class="p">]</span> <span class="o">=</span> <span class="n">index</span>
+</pre></div>
     </div><!-- /.entry-content -->
 
   </article>

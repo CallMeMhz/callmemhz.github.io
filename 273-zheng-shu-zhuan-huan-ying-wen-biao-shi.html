@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="chinese (simplified)">
+<head>
+        <meta charset="utf-8" />
+        <title>273. 整数转换英文表示</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">MHZ </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/leetcode.html">Leetcode</a></li>
+                    <li><a href="/category/posts.html">Posts</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/273-zheng-shu-zhuan-huan-ying-wen-biao-shi.html" rel="bookmark"
+           title="Permalink to 273. 整数转换英文表示">273. 整数转换英文表示</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2018-01-26T17:54:00+08:00">
+                Published: 周五 26 一月 2018
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/mega-hertz.html">Mega Hertz</a>
+        </address>
+<p>In <a href="/category/leetcode.html">Leetcode</a>.</p>
+
+</footer><!-- /.post-info -->      <div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solution</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Zero&#39;</span><span class="p">,</span> <span class="s1">&#39;One&#39;</span><span class="p">,</span> <span class="s1">&#39;Two&#39;</span><span class="p">,</span> <span class="s1">&#39;Three&#39;</span><span class="p">,</span> <span class="s1">&#39;Four&#39;</span><span class="p">,</span> <span class="s1">&#39;Five&#39;</span><span class="p">,</span> <span class="s1">&#39;Six&#39;</span><span class="p">,</span> <span class="s1">&#39;Seven&#39;</span><span class="p">,</span> <span class="s1">&#39;Eight&#39;</span><span class="p">,</span> <span class="s1">&#39;Nine&#39;</span><span class="p">,</span> <span class="s1">&#39;Ten&#39;</span><span class="p">,</span> <span class="s1">&#39;Eleven&#39;</span><span class="p">,</span>
+                      <span class="s1">&#39;Twelve&#39;</span><span class="p">,</span> <span class="s1">&#39;Thirteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Fourteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Fifteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Sixteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Seventeen&#39;</span><span class="p">,</span> <span class="s1">&#39;Eighteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Nineteen&#39;</span><span class="p">,</span> <span class="s1">&#39;Twenty&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tens</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="s1">&#39;Twenty&#39;</span><span class="p">,</span> <span class="s1">&#39;Thirty&#39;</span><span class="p">,</span> <span class="s1">&#39;Forty&#39;</span><span class="p">,</span> <span class="s1">&#39;Fifty&#39;</span><span class="p">,</span> <span class="s1">&#39;Sixty&#39;</span><span class="p">,</span> <span class="s1">&#39;Seventy&#39;</span><span class="p">,</span> <span class="s1">&#39;Eighty&#39;</span><span class="p">,</span> <span class="s1">&#39;Ninety&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">numberToWords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">999999999</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">1000000000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Billion&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000000000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Billion &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">1000000000</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">999999</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">1000000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Million&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Million &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">1000000</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">999</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Thousand&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">//</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot; Thousand &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">1000</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">99</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">num</span> <span class="o">//</span> <span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; Hundred&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">num</span> <span class="o">//</span> <span class="mi">100</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; Hundred &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">numberToWords</span><span class="p">(</span><span class="n">num</span> <span class="o">%</span> <span class="mi">100</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">num</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">num</span> <span class="o">%</span> <span class="mi">10</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tens</span><span class="p">[</span><span class="n">num</span> <span class="o">//</span> <span class="mi">10</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">tens</span><span class="p">[</span><span class="n">num</span> <span class="o">//</span> <span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">num</span> <span class="o">%</span> <span class="mi">10</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">units</span><span class="p">[</span><span class="n">num</span><span class="p">]</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>links</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>
